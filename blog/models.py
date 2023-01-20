@@ -16,4 +16,4 @@ class Article (models.Model):
     status = models.CharField(max_length=1,choices=STATUS_CHOICES)
 
     def __str__(self):
-        self.title
+        return self.title

@@ -1,0 +1,19 @@
+{% for post in post %}
+<center>
+    <ul>
+        <li>
+            <a href="{% url 'detail' detail.slug %}">{{post.title}}</a>
+            <br>
+            <br>
+            <img width="300" height="300" src="{{post.thumbnail.url}}" alt="">        
+            <br>
+            <p>{{post.descriptions}}</p>
+            <br>
+            <br>
+            <small>{{post.created}}</small>
+            <br>
+    
+        </li>  
+    </ul>
+</center>
+{% endfor %}
