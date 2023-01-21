@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 
 from . models import Article
 
@@ -10,8 +10,9 @@ def home(request):
     return render(request,'blog/index.html',context)
 
 def detail(request,blog_id):
-    detail = Article.objects.get(id=blog_id)
-    context={
+    # detail =Article.objects.get(id=blog_id)
+    detail = get_object_or_404(Article,id=blog_id,status="P")
+    context={  
         'detail':detail
     }
     return render(request,'blog/post.html',context)
