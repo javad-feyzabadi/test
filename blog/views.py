@@ -7,11 +7,11 @@ def home(request):
     context={
         'post':post
     }
-    return render(request,'blog/home.html',context)
+    return render(request,'blog/index.html',context)
 
 def detail(request,blog_id):
     detail = Article.objects.get(id=blog_id)
     context={
         'detail':detail
     }
-    return render(request,'blog/detail.html',context)
+    return render(request,'blog/post.html',context)
