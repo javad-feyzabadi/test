@@ -9,8 +9,8 @@ def home(request):
     }
     return render(request,'blog/home.html',context)
 
-def detail(request,slug):
-    detail = Article.objects.get(slug=slug)
+def detail(request,blog_id):
+    detail = Article.objects.get(id=blog_id)
     context={
         'detail':detail
     }

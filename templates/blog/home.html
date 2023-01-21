@@ -2,7 +2,7 @@
 <center>
     <ul>
         <li>
-            <a href="{% url 'detail' detail.slug %}">{{post.title}}</a>
+            <a href="{% url 'detail' post.id %}">{{post.title}}</a>
             <br>
             <br>
             <img width="300" height="300" src="{{post.thumbnail.url}}" alt="">        
