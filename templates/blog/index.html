@@ -4,13 +4,13 @@
 
 
 {% block header%}
-<header class="masthead" style="background-image: url('static/blog/assets/img/home-bg.jpg')">
+<header class="masthead" style="background-image: url('static/blog/assets/img/home.jpg')">
     <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="site-heading">
-                    <h1>Bio</h1>
-                    <span class="subheading">A Blog </span>
+                    <h1>Music of Iran</h1>
+                    <span class="subheading">Persian traditional music</span>
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
                     <div class="post-preview">
                         <a href="{% url 'detail' post.id %}">
                             <h2 class="podfor st-title">{{post.title}}</h2>
-                           <img src="{{post.thumbnail.url}}" alt="">
+                           <img src="{{post.thumbnail.url}}" alt="" width="250" height="auto">
                             <h3 class="post-subtitle">{{post.descriptions|truncatewords:30}}</h3>
                         </a>
                         <p class="post-meta">
@@ -37,7 +37,7 @@
                             <a href="#!">{{post.status}}</a>
                             {{post.created}}
                         </p>
-                        {% for cat in post.categoruy_published.all %}
+                        {% for cat in post.categorey_published.all %}
                         <a href="{% url 'category' cat.id %}">#{{cat.title}}</a>
                         {% endfor %}
                     </div>

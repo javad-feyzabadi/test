@@ -1,6 +1,12 @@
 from django.db import models
 from django.utils import timezone
 
+#My Manager
+class ArticleManager(models.Manager):
+    def published(self):
+        return self.filter(status='P')
+
+
 class Category(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=100,unique=True)
@@ -35,5 +41,7 @@ class Article (models.Model):
     def __str__(self):
         return self.title
 
-    def categoruy_published(self):
+    def categorey_published(self):
         return self.category.filter(status = True)
+
+    objects = ArticleManager()

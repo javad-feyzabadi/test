@@ -4,7 +4,7 @@
 
 
 {% block header%}
-<header class="masthead" style="background-image: url('static/blog/assets/img/home-bg.jpg')">
+<header class="masthead" style="background-image: url('static/blog/assets/img/post.jpg')">
     <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
@@ -24,8 +24,9 @@
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
+                    <h3 class="alert alert-primary text-center">Category {{cat.title}}</h3>
                     <!-- Post preview-->
-                    {% for post in cat.articles.all %}
+                    {% for post in cat.articles.published %}
                     <div class="post-preview">
                         <a href="{% url 'detail' post.id %}">
                             <h2 class="podfor st-title">{{post.title}}</h2>
