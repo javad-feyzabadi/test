@@ -10,12 +10,14 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display=("title","slug","publish","status")
+    list_display=("title","slug","publish","status","get_category")
     list_filter =("publish","status")
     search_fields =('title','description')
     prepopulated_fields={'slug':('title',)}
     ordering = ["status","-publish"]
 
+    def get_category(self,obj):
+        return ", ".join([category.title for category in obj.category.all()])
 
 admin.site.register(Article,ArticleAdmin)
 admin.site.register(Category,CategoryAdmin)
