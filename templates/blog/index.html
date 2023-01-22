@@ -37,8 +37,8 @@
                             <a href="#!">{{post.status}}</a>
                             {{post.created}}
                         </p>
-                        {% for cat in post.category.all %}
-                        <a href="#!">#{{cat.title}}</a>
+                        {% for cat in post.categoruy_published.all %}
+                        <a href="{% url 'category' cat.id %}">#{{cat.title}}</a>
                         {% endfor %}
                     </div>
                     <!-- Divider-->
