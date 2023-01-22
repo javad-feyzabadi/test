@@ -1,9 +1,10 @@
 from django.urls import path
-from . views import home,detail
+from . views import home,detail,category
 
 
 urlpatterns=[
     path('',home,name='home'),
     path('detail/<int:blog_id>/',detail,name='detail'),
+    path('category/<int:blog_id>/',category,name='category'),
 
 ]
