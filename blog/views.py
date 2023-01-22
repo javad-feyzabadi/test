@@ -17,3 +17,12 @@ def detail(request,blog_id):
         'detail':detail
     }
     return render(request,'blog/post.html',context)
+
+
+def category(request,blog_id):
+    # cat =Category.objects.get(id=blog_id)
+    cat = get_object_or_404(Category,id=blog_id,status=True)
+    context={  
+        'cat':cat
+    }
+    return render(request,'blog/category.html',context)
