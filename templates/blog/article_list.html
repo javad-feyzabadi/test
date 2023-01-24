@@ -37,7 +37,7 @@
                             post created :
                             {{post.created}}
                         </p>
-                        {% for cat in object_list.categorey_published.all %}
+                        {% for cat in post.categorey_published.all %}
                         <a href="{% url 'category' cat.id %}">#{{cat.title}}</a>
                         {% endfor %}
                     </div>

@@ -4,12 +4,12 @@
 
 
 {% block header%}
-<header class="masthead" style="background-image:url('{{detail.thumbnail.url}}')">
+<header class="masthead" style="background-image:url('{{object.thumbnail.url}}')">
     <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="post-heading">
-                    <h1>{{detail.title}}</h1>
+                    <h1>{{object.title}}</h1>
                     <h2 class="subheading">Iranian singer</h2>
                     <span class="meta">
                         Posted by
@@ -32,14 +32,14 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center" >
                     <div class="col-md-10 col-lg-8 col-xl-7 ">
                         
-                        <h2 class="section-heading">{{detail.title}}</h2>
-                        <p>{{detail.descriptions|linebreaks}}</p>
-                        <blockquote class="blockquote">{{detail.publish}}</blockquote>
+                        <h2 class="section-heading">{{object.title}}</h2>
+                        <p>{{object.descriptions|linebreaks}}</p>
+                        <blockquote class="blockquote">{{object.publish}}</blockquote>
                         <h2 class="section-heading">Picture</h2>
-                        <a href="{{detail.thumbnail.url}}"><img class="img-fluid" src="{{detail.thumbnail.url}}" alt="..." /></a>
+                        <a href="{{object.thumbnail.url}}"><img class="img-fluid" src="{{object.thumbnail.url}}" alt="..." /></a>
                         <span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
                         <p>
-                            &middot; {{detail.title}}
+                            &middot; {{object.title}}
                             <a href="http://Wikipedia.com/">Wikipedia</a>
                             <a href="https://www.ostadshajarian.com/">Weblog</a>
                         </p>
