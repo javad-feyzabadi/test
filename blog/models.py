@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils import timezone
-
 #My Manager
 class ArticleManager(models.Manager):
     def published(self):
@@ -8,13 +7,14 @@ class ArticleManager(models.Manager):
 
 
 class Category(models.Model):
+    parent = models.ForeignKey("self",related_name='childern',blank=True,null=True,on_delete=models.SET_NULL)
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=100,unique=True)
     status = models.BooleanField(default=True)
     position = models.IntegerField()
 
     class Meta:
-        ordering = ['position']
+        ordering = ['parent__id','position']
 
     def __str__(self):
         return self.title

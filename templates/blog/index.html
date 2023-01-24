@@ -33,8 +33,8 @@
                             <h3 class="post-subtitle">{{post.descriptions|truncatewords:30}}</h3>
                         </a>
                         <p class="post-meta">
-                            Posted by
-                            <a href="#!">{{post.status}}</a>
+                            <a >{{post}}</a>
+                            post created :
                             {{post.created}}
                         </p>
                         {% for cat in post.categorey_published.all %}
@@ -44,8 +44,39 @@
                     <!-- Divider-->
                     <hr class="my-4" />
                    {% endfor %}
+
                     <!-- Pager-->
-                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
+
+                    {% if post.has_other_pages%}
+
+                    <nav aria-label="Page navigation example text-aline-center" >
+                        <ul class="pagination">
+
+                          {% if post.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?page={{post.previous_page_number}}">Previous</a></li>
+                          {% endif%}
+
+                          {% for post in post.paginator.page_range %}
+
+                            {% if post.number == page %}
+                                <li class="page-item "><a class="page-link" href="?page={{post}}">{{post}}</a></li>
+                            {% endif %}
+
+                          {% endfor%}
+
+                          {% if post.has_next %}
+                            <li class="page-item"><a class="page-link" href="?page={{post.next_page_number}}">Next</a></li>
+                          {% endif%}
+
+                        </ul>
+                    </nav>
+
+                    {% endif %}
+                    
+                    <!-- <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div> -->
+                    
+                    <!-- End Pager-->
+
                 </div>
             </div>
         </div>

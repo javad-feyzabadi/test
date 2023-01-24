@@ -1,0 +1,16 @@
+<ul class="dropdown-menu">
+    {% for cat in cat.childern.all %}
+        <li>
+            
+            <!-- <a class="dropdown-item" href="{% url 'category' cat.id%}">{{cat.title}}</a> -->
+            
+            <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <a href="{% url 'category' cat.id%}">{{cat.title}}</a>
+              </button>
+            
+            {% if cat.childern.all %}
+                {% include 'blog/partials/category_loop.html'%}
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>    

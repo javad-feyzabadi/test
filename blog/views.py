@@ -1,13 +1,17 @@
 from django.shortcuts import render,get_object_or_404
-
+from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
 from . models import Article,Category
 
 def home(request):
-    post = Article.objects.filter(status="P")
+    articles_list = Article.objects.filter(status="P")
+    paginator = Paginator(articles_list,4)
+    page = request.GET.get('page',1)
+    post = paginator.get_page(page)
 
-    context={
+    context= {
         'post':post,
     }
+    
     return render(request,'blog/index.html',context)
 
 def detail(request,blog_id):
@@ -19,10 +23,17 @@ def detail(request,blog_id):
     return render(request,'blog/post.html',context)
 
 
-def category(request,blog_id):
+
+def category(request,blog_id,page=1):
     # cat =Category.objects.get(id=blog_id)
-    cat = get_object_or_404(Category,id=blog_id,status=True)
+    cat = get_object_or_404(Category,id=blog_id,status=True)    
+    articles_list = cat.articles.published()
+    paginator = Paginator(articles_list,4)
+    page = request.GET.get('page',1)
+    post = paginator.get_page(page)
+
     context={  
-        'cat':cat
+        'cat':cat,
+        'post':post
     }
     return render(request,'blog/category.html',context)
