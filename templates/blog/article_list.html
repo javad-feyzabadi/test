@@ -25,7 +25,7 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <!-- Post preview-->
-                    {% for post in post %}
+                    {% for post in object_list %}
                     <div class="post-preview">
                         <a href="{% url 'detail' post.id %}">
                             <h2 class="podfor st-title">{{post.title}}</h2>
@@ -37,7 +37,7 @@
                             post created :
                             {{post.created}}
                         </p>
-                        {% for cat in post.categorey_published.all %}
+                        {% for cat in object_list.categorey_published.all %}
                         <a href="{% url 'category' cat.id %}">#{{cat.title}}</a>
                         {% endfor %}
                     </div>
@@ -47,16 +47,16 @@
 
                     <!-- Pager-->
 
-                    {% if post.has_other_pages%}
+                    {% if is_paginated %}
 
                     <nav aria-label="Page navigation example text-aline-center" >
                         <ul class="pagination">
 
-                          {% if post.has_previous %}
-                            <li class="page-item"><a class="page-link" href="?page={{post.previous_page_number}}">Previous</a></li>
+                          {% if page_obj.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a></li>
                           {% endif%}
 
-                          {% for post in post.paginator.page_range %}
+                          {% for post in page_obj.paginator.page_range %}
 
                             {% if post.number == page %}
                                 <li class="page-item "><a class="page-link" href="?page={{post}}">{{post}}</a></li>
@@ -64,8 +64,8 @@
 
                           {% endfor%}
 
-                          {% if post.has_next %}
-                            <li class="page-item"><a class="page-link" href="?page={{post.next_page_number}}">Next</a></li>
+                          {% if page_obj.has_next %}
+                            <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a></li>
                           {% endif%}
 
                         </ul>
