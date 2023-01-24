@@ -1,9 +1,15 @@
 from django.db import models
 from django.utils import timezone
+
+
 #My Manager
 class ArticleManager(models.Manager):
     def published(self):
         return self.filter(status='P')
+
+class CategoryManager(models.Manager):
+    def active(self):
+        return self.filter(status=True)
 
 
 class Category(models.Model):
@@ -18,6 +24,8 @@ class Category(models.Model):
 
     def __str__(self):
         return self.title
+
+    objects = CategoryManager()
 
 
 class Article (models.Model):

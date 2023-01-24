@@ -1,8 +1,8 @@
  <ul class="navbar-nav ml-auto">
-    {% for cat in cat.childern.all %}
+    {% for cat in cat.childern.active %}
         <li class="nav-item">
             <a class="nav-link" href="{% url 'category' cat.id%}">{{cat.title}}</a>
-            {% if cat.childern.all %}
+            {% if cat.childern.active %}
                 {% include 'blog/partials/category_loop.html'%}
             {% endif %}
         </li>
