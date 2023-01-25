@@ -1,5 +1,6 @@
 /*
     DJANGO Admin styles
+    
 */
 
 @import url(fonts.css);
@@ -1087,3 +1088,75 @@ a.deletelink:focus, a.deletelink:hover {
     color: white;
     background: var(--link-hover-color);
 }
+/* own css  */
+#header {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    background: #2e1646;
+    color: #ff0;
+    overflow: hidden;
+}
+
+#module h2, .module caption, .inline-group h2 {
+    margin: 0;
+    padding: 8px;
+    font-weight: 400;
+    font-size: 0.8125rem;
+    text-align: left;
+    background: #2e1646;
+    color: #ff0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 0.875rem;
+    font-family: "Roboto","Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
+    color: #130520;
+    background: #130520;
+  }
+
+  div.breadcrumbs {
+    background: #2e1646;
+    padding: 10px 40px;
+    border: none;
+    color: var(--breadcrumbs-fg);
+    text-align: left;
+  }
+
+.module h2, .module caption, .inline-group h2 {
+
+    background: #2e1646;
+    color: var(--header-link-color);
+  }
+
+#content-related .module {
+    background:#2e1646;
+  }
+#content-related {
+    background: #4f3469;
+  }
+
+  #content-related .module h2 {
+   
+    color: rgb(255, 255, 255);
+  }
+
+  h1 {
+  
+    color: rgb(255, 255, 255);
+  }
+
+
+
+  .module {
+    border: none;
+    margin-bottom: 30px;
+    background: #130520;
+  }
+
+ 
