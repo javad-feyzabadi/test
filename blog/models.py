@@ -49,8 +49,7 @@ class Article (models.Model):
     def __str__(self):
         return self.title
 
-    def categorey_published(self):
-        return self.category.filter(status = True)
+
 
     def thumbnail_tag(self):
         return format_html("<img width=100 height=70 style='border-radius:10px;' src='{}'>".format(self.thumbnail.url))
