@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 from django.utils.html import format_html
 
 #My Manager
@@ -33,6 +34,7 @@ class Article (models.Model):
     ("D","Draft"),
     ("P","Published")
     )
+    author = models.ForeignKey(User,null=True,on_delete=models.SET_NULL,related_name='articles')
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=100,unique=True)
     descriptions = models.TextField()
