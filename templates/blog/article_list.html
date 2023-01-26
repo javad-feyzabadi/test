@@ -33,9 +33,8 @@
                             <h3 class="post-subtitle">{{post.descriptions|truncatewords:30}}</h3>
                         </a>
                         <p class="post-meta">
-                            <a href="#">post created :
-                                {{post.author}}</a>
-                            
+                            <a href="{% url 'author' post.id %}">post created :
+                                {{post.author.get_full_name}}</a>
                         </p>
                         {% for cat in post.category.active %}
                         <a href="{% url 'category' cat.id %}">#{{cat.title}}</a>

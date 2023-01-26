@@ -30,7 +30,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class ArticleAdmin(admin.ModelAdmin):
     list_display=("title","author",'thumbnail_tag',"slug","publish","status","get_category")
-    list_filter =("publish","status")
+    list_filter =("publish","status",'author')
     search_fields =('title','description')
     prepopulated_fields={'slug':('title',)}
     ordering = ["status","-publish"]
