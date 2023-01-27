@@ -2,6 +2,7 @@ from django.views.generic import ListView,DetailView
 from django.shortcuts import render,get_object_or_404
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
+
 from . models import Article,Category
 
 
@@ -42,7 +43,7 @@ class ArticleAuthorList(ListView):
     def get_queryset(self):
         global author
         username = self.kwargs.get('username')
-        author = get_object_or_404(User,username = username)
+        author = get_object_or_404(User,username=username)
         return author.articles.published()
 
     def get_context_data(self, **kwargs):
