@@ -491,3 +491,11 @@ iframe {
 
 
 
+/* my css */
+
+.errors {
+  color: #c80000;
+  background-color: #ffc4c4;
+  padding: 20px 30px;
+}
+
