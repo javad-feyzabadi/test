@@ -4,6 +4,9 @@ from . views import ( ArticleListView,ArticleDetailView,
 
 )
 
+app_name = 'blog'
+
+
 urlpatterns=[
     path('',ArticleListView.as_view(),name='home'),
     path('detail/<int:blog_id>/',ArticleDetailView.as_view(),name='detail'),

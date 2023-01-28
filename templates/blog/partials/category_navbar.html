@@ -6,7 +6,7 @@
         {% for cat in cat %}
             {% if cat.parent == None %}
                 <li class="nav-item">
-                        <a class="nav-link" href="{% url 'category' cat.id%}">{{cat.title}}</a>
+                        <a class="nav-link" href="{% url 'blog:category' cat.id%}">{{cat.title}}</a>
                     {% if cat.childern.active %}
                         {% include 'blog/partials/category_loop.html'%}
                     {% endif %}

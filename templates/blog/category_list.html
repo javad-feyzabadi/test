@@ -28,7 +28,7 @@
                     <!-- Post preview-->
                     {% for post in object_list %}
                         <div class="post-preview">
-                            <a href="{% url 'detail' category.id %}">
+                            <a href="{% url 'blog:detail' category.id %}">
                                 <h2 class="podfor st-title">{{post.title}}</h2>
                             <img src="{{post.thumbnail.url}}" alt="">
                                 <h3 class="post-subtitle">{{post.descriptions|truncatewords:30}}</h3>
@@ -39,7 +39,7 @@
                                 {{post.created}}
                             </p>
                             {% for cat in post.category.active %}
-                            <a href="{% url 'category' cat.id %}">#{{cat.title}}</a>
+                            <a href="{% url 'blog:category' cat.id %}">#{{cat.title}}</a>
                             {% endfor %}
                         </div>
                         <!-- Divider-->
