@@ -52,8 +52,10 @@ class Article (models.Model):
         return self.title
 
 
-
     def thumbnail_tag(self):
         return format_html("<img width=100 height=70 style='border-radius:10px;' src='{}'>".format(self.thumbnail.url))
+
+    def get_category(self):
+        return ", ".join([category.title for category in self.category.active()])
 
     objects = ArticleManager()

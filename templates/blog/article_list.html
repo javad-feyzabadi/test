@@ -38,7 +38,7 @@
                         </p>
                         {% for cat in post.category.active %}
                         <a href="{% url 'blog:category' cat.id %}">#{{cat.title}}</a>
-                        {% endfor %}
+                    {% endfor %}
                     </div>
                     <!-- Divider-->
                     <hr class="my-4" />

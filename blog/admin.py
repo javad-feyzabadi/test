@@ -36,8 +36,6 @@ class ArticleAdmin(admin.ModelAdmin):
     ordering = ["status","-publish"]
     actions = [make_published,make_draft]
 
-    def get_category(self,obj):
-        return ", ".join([category.title for category in obj.category.active()])
 
 admin.site.register(Article,ArticleAdmin)
 admin.site.register(Category,CategoryAdmin)
