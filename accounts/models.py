@@ -12,3 +12,4 @@ class User(AbstractUser):
             return True
         else:
             return False
+    is_special_user.boolean = True
