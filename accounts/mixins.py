@@ -1,4 +1,7 @@
 from django.http import Http404
+from django.shortcuts import get_object_or_404
+
+from blog.models import Article
 
 class FieldsMixin():
     def dispatch(self, request, *args, **kwargs):
@@ -29,3 +32,10 @@ class FormValidMixin():
         return super().form_valid(form)
         
                 
+class AuthorAccessMixin():
+    def dispatch(self, request,pk, *args, **kwargs):
+        article = get_object_or_404(Article,pk=pk)
+        if article.author == request.user and article.status == "D" or request.user.is_superuser:
+            return super().dispatch(request, *args, **kwargs)
+        else:
+            raise Http404("just author can see this page")
