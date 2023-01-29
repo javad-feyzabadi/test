@@ -11,7 +11,6 @@ from . mixins import FieldsMixin,FormValidMixin
 
 class ArticleList(LoginRequiredMixin, ListView):
 	template_name = "registration/home.html"
-
 	def get_queryset(self):
 		if self.request.user.is_superuser:
 			return Article.objects.all()

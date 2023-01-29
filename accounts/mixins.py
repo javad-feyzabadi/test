@@ -15,7 +15,7 @@ class FieldsMixin():
                  'category','publish'
                 ]
         else:
-                raise Http404("just author can see this page")
+            raise Http404("just author can see this page")
         return super().dispatch(request, *args, **kwargs)
 
 class FormValidMixin():

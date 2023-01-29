@@ -135,7 +135,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #login
 
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'accounts:homee'
 LOGIN_URL = 'login' 
+
+#CRISPY
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+#AUTH_USER
+
 AUTH_USER_MODEL = 'accounts.User'

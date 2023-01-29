@@ -60,6 +60,6 @@ class Article (models.Model):
         return ", ".join([category.title for category in self.category.active()])
 
     def get_absolute_url(self):
-        return reverse('accounts:home')
+        return reverse('accounts:homee')
 
     objects = ArticleManager()
