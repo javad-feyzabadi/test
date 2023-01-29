@@ -3,10 +3,13 @@ from django.urls import path
 
 from . views import ArticleList
 
+
 app_name = 'accounts'
 
 urlpatterns = [
-    path("login/", views.LoginView.as_view(), name="login"),
+    path("login/",views.LoginView.as_view(), name="login"),
+    path('',ArticleList.as_view(),name='home'),
+
     # path("logout/", views.LogoutView.as_view(), name="logout"),
     # path(
     #     "password_change/", views.PasswordChangeView.as_view(), name="password_change"
@@ -35,6 +38,6 @@ urlpatterns = [
 ]
 
 
-urlpatterns += [
-    path('',ArticleList.as_view(),name='myhome'),
-]
+# urlpatterns += [
+#     path('',ArticleList.as_view(),name='home'),
+# ]

@@ -1,5 +1,6 @@
 {% load static %}
 {% load widget_tweaks %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,7 +42,7 @@
         {% endif %}
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form" method="Post">
+				<form class="login100-form validate-form" method="post" action="">
                     {% csrf_token %}
 					<span class="login100-form-title p-b-26">
 						Welcome
