@@ -1,5 +1,7 @@
 {% extends 'registration/base.html' %}
-{% block title %} Article List {% endblock%}
+{% block title-meta%}{% block title %}
+Article List 
+{% endblock%}{% endblock%}
 
 {% block main %}
     <div class="row">
@@ -51,7 +53,7 @@
                                 <span class="badge badge-danger">Draft</span>
                             {% endif %}
                         </td>
-                        <td>{{article.descriptions|truncatewords:"20"}}</td>
+                        <td>{{article.descriptions|striptags|truncatewords:"20"}}</td>
 
                     </tr>
                 {% endfor %}

@@ -33,7 +33,7 @@
                     <div class="col-md-10 col-lg-8 col-xl-7 ">
                         
                         <h2 class="section-heading">{{object.title}}</h2>
-                        <p>{{object.descriptions|linebreaks}}</p>
+                        <p>{{object.descriptions|safe}}</p>
                         <blockquote class="blockquote">{{object.publish}}</blockquote>
                         <h2 class="section-heading">Picture</h2>
                         <a href="{{object.thumbnail.url}}"><img class="img-fluid" src="{{object.thumbnail.url}}" alt="..." /></a>
