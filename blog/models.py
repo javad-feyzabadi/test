@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.utils.html import format_html
+from django.urls import reverse
 
 #My Manager
 class ArticleManager(models.Manager):
@@ -57,5 +58,8 @@ class Article (models.Model):
 
     def get_category(self):
         return ", ".join([category.title for category in self.category.active()])
+
+    def get_absolute_url(self):
+        return reverse('accounts:home')
 
     objects = ArticleManager()

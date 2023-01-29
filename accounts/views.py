@@ -1,7 +1,7 @@
 from django.shortcuts import render
 # from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView
+from django.views.generic import ListView,CreateView
 
 from blog.models import Article
 
@@ -17,3 +17,8 @@ class ArticleList(LoginRequiredMixin, ListView):
 			return Article.objects.all()
 		else:
 			return Article.objects.filter(author=self.request.user)
+
+class ArticleCreate(CreateView):
+	model = Article
+	fields = ['author','title','slug','descriptions','thumbnail','category','publish','status',]
+	template_name = "registration/create-update.html"
