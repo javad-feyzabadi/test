@@ -1088,7 +1088,7 @@ a.deletelink:focus, a.deletelink:hover {
     color: white;
     background: var(--link-hover-color);
 }
-/* own css 
+/* own css  */
 #header {
     width: auto;
     height: auto;
@@ -1159,4 +1159,4 @@ body {
     background: #130520;
   }
 
-  */
+ 

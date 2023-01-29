@@ -1,7 +1,7 @@
 from django.views.generic import ListView,DetailView
 from django.shortcuts import render,get_object_or_404
 from django.core.paginator import Paginator
-from django.contrib.auth.models import User
+from accounts.models import User
 
 from . models import Article,Category
 
