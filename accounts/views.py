@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView,CreateView
 
 from blog.models import Article
-
+from . mixins import FieldsMixin,FormValidMixin
 # @login_required
 # def home(request):
 #     return render(request,'registration/home.html')
@@ -18,7 +18,6 @@ class ArticleList(LoginRequiredMixin, ListView):
 		else:
 			return Article.objects.filter(author=self.request.user)
 
-class ArticleCreate(CreateView):
+class ArticleCreate(LoginRequiredMixin,FormValidMixin,FieldsMixin,CreateView):
 	model = Article
-	fields = ['author','title','slug','descriptions','thumbnail','category','publish','status',]
 	template_name = "registration/create-update.html"
