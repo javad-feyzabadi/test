@@ -9,13 +9,13 @@ class FieldsMixin():
                 self.fields = [
                  'author','title','slug',
                  'descriptions','thumbnail',
-                 'category','publish','status'
+                 'category','publish','is_special','status'
                 ]
         elif request.user.is_author:
             self.fields = [
                  'title','slug',
                  'descriptions','thumbnail',
-                 'category','publish'
+                 'category','is_special','publish'
                 ]
         else:
             raise Http404("just author can see this page")

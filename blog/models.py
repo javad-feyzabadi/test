@@ -48,6 +48,7 @@ class Article (models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=1,choices=STATUS_CHOICES)
+    is_special = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-publish']

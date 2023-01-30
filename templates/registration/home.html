@@ -33,6 +33,7 @@ Article List
                             <th>Get category</th> 
                             <th>Author</th>
                             <th>Publish</th>
+                            <th>Special Article</th>
                             <th>Status</th>
                             <th>Descriptions</th>
 
@@ -52,6 +53,13 @@ Article List
                                 <td>{{article.get_category}}</td>
                                 <td>{{article.author.get_full_name}}</td> 
                                 <td>{{article.publish}}</td>
+                                <td>
+                                    {% if article.is_special %}
+                                        <i class="fa fa-check-circle" style="color: green;"></i>
+                                    {% else %}
+                                        <i class="fa fa-minus-circle" style="color: red;"></i>
+                                    {% endif %}
+                                </td>
                                 <td>
                                     {% if article.status == 'P' %}
                                         <span class="badge badge-success">Publish</span>
