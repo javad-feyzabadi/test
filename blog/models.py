@@ -33,7 +33,10 @@ class Category(models.Model):
 class Article (models.Model):
     STATUS_CHOICES=(
     ("D","Draft"),
-    ("P","Published")
+    ("P","Published"),
+    ("I","Investigation"),
+    ("B","Back"),
+
     )
     author = models.ForeignKey(User,null=True,on_delete=models.SET_NULL,related_name='articles')
     title = models.CharField(max_length=200)

@@ -42,7 +42,7 @@ Article List
                         {% for article in object_list %}
                             <tr>
                                 <td>
-                                    {% if article.status == 'D' or user.is_superuser %}
+                                    {% if article.status in 'BD'|make_list or user.is_superuser %}
                                     <a href="{% url 'accounts:article-update' article.pk %}">{{article.title}}</a>
                                     {% else %}
                                     {{article.title}}
@@ -56,14 +56,27 @@ Article List
                                     {% if article.status == 'P' %}
                                         <span class="badge badge-success">Publish</span>
                                         <a target="_blank" class="badge badge-primary" href="{% url 'blog:detail' article.id %}">To Site</a>
+                                    {% elif article.status == 'I' %}
+                                        <span class="badge" style="color: #fff; background-color: #5d09b0; ">Investigation</span>
+                                            {% if user.is_superuser %}
+                                                <a target="_blank" href="{% url 'blog:preview' article.pk %}" class="badge badge-secondary">Preview</a>
+                                            {% endif %}
+                                            
                                     {% else %}
-                                        <span class="badge badge-warning">Draft</span>
-                                        <a href="{% url 'blog:preview' article.pk %}" class="badge badge-secondary">Preview</a>
 
+                                            {% if article.status == 'D' %}
+                                                <span class="badge badge-warning">Draft</span>
+                                            {% else %}
+                                                <span class="badge" style="color: #fff;
+                                                background-color: #000;">Back</span>
+                                            {% endif %}
+                                            <a target="_blank" href="{% url 'blog:preview' article.pk %}" class="badge badge-secondary">Preview</a>
+                                    
                                     {% endif %}
-                                    {% if user.is_superuser %}
-                                        <a class="badge badge-danger" href="{% url 'accounts:article-delete' article.pk %}">Delete</a>
-                                    {% endif %}
+
+                                            {% if user.is_superuser %}
+                                                    <a class="badge badge-danger" href="{% url 'accounts:article-delete' article.pk %}">Delete</a>
+                                            {% endif %}
                                 </td>
                                 <td>{{article.descriptions|striptags|truncatewords:"20"}}</td>
 
