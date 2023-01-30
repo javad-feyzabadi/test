@@ -2,7 +2,7 @@
 
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.contrib.auth.views import LoginView,PasswordChangeView
+from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
 						ListView,CreateView,
@@ -72,5 +72,3 @@ class Login(LoginView):
 		else:
 			return reverse_lazy('accounts:profile')
 
-class PasswordChange(PasswordChangeView):
-	success_url = reverse_lazy('accounts:password_change_done')
