@@ -34,10 +34,10 @@
                         
                         <h2 class="section-heading">{{object.title}}</h2>
                         {% if object.is_special %}
-                            {% if user.is_authenticated and user._is_special_user or user == object.author or user.is_superuser %}
+                            {% if user.is_authenticated and user.is_special_user or user == object.author or user.is_superuser %}
                                 <p>{{object.descriptions|safe}}</p>
                             {% else %}
-                            <p> This Article Is Special Article <a href="#">Special User</a>Buy Article</p>
+                            <p> This Article Is Special Article <a href="#">Special User</a> Buy Article</p>
                             {% endif %}
                         {% else %}
                             <p>{{object.descriptions|safe}}</p>
