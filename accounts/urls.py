@@ -8,15 +8,15 @@ app_name = 'accounts'
 
 urlpatterns = [
     path("login/",views.LoginView.as_view(), name="login"),
+    path("logout/", views.LogoutView.as_view(), name="logout"),
+
+
     path("",ArticleList.as_view(),name='homee'),
     path("create/",ArticleCreate.as_view(),name='article-create'),
     path("update/<int:pk>",ArticleUpdate.as_view(),name='article-update'),
     path("delete/<int:pk>",ArticleDelete.as_view(),name='article-delete'),
-
-
-
-
-    # path("logout/", views.LogoutView.as_view(), name="logout"),
+    
+    
     # path(
     #     "password_change/", views.PasswordChangeView.as_view(), name="password_change"
     # ),

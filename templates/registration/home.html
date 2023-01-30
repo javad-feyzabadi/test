@@ -6,73 +6,83 @@ Article List
 {% block main %}
     <div class="row">
         <div class="col-12">
-        <div class="card">
-            <div class="card-header">
-            <h3 class="card-title">Article Table</h3>
+           {% if object_list %}
+                <div class="card">
+                    <div class="card-header">
+                    <h3 class="card-title">Article Table</h3>
 
-            <div class="card-tools">
-                <div class="input-group input-group-sm" style="width: 150px;">
-                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                    <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
-                <div class="input-group-append">
-                    <button type="submit" class="btn btn-default">
-                    <i class="fas fa-search"></i>
-                    </button>
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default">
+                            <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                    <table class="table table-hover text-nowrap">
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Thumbnail tag</th>
+                            <th>Get category</th> 
+                            <th>Author</th>
+                            <th>Publish</th>
+                            <th>Status</th>
+                            <th>Descriptions</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for article in object_list %}
+                            <tr>
+                                <td>
+                                    {% if article.status == 'D' or user.is_superuser %}
+                                    <a href="{% url 'accounts:article-update' article.pk %}">{{article.title}}</a>
+                                    {% else %}
+                                    {{article.title}}
+                                    {% endif %}
+                                </td>
+                                <td><img src="{{article.thumbnail.url}}" width="120px"  alt=""></td>  
+                                <td>{{article.get_category}}</td>
+                                <td>{{article.author.get_full_name}}</td> 
+                                <td>{{article.publish}}</td>
+                                <td>
+                                    {% if article.status == 'P' %}
+                                        <span class="badge badge-success">Publish</span>
+                                        <a target="_blank" class="badge badge-primary" href="{% url 'blog:detail' article.id %}">To Site</a>
+                                    {% else %}
+                                        <span class="badge badge-warning">Draft</span>
+                                    {% endif %}
+                                    {% if user.is_superuser %}
+                                        <a class="badge badge-danger" href="{% url 'accounts:article-delete' article.pk %}">Delete</a>
+                                    {% endif %}
+                                </td>
+                                <td>{{article.descriptions|striptags|truncatewords:"20"}}</td>
+
+                            </tr>
+                        {% endfor %}
+            
+                        </tbody>
+                    </table>
+                    </div>
+                    <!-- /.card-body -->
                 </div>
-                </div>
-            </div>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body table-responsive p-0">
-            <table class="table table-hover text-nowrap">
-                <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Thumbnail tag</th>
-                    <th>Get category</th> 
-                    <th>Author</th>
-                    <th>Publish</th>
-                    <th>Status</th>
-                    <th>Descriptions</th>
-
-                </tr>
-                </thead>
-                <tbody>
-                {% for article in object_list %}
-                    <tr>
-                        <td>
-                            {% if article.status == 'D' or user.is_superuser %}
-                            <a href="{% url 'accounts:article-update' article.pk %}">{{article.title}}</a>
-                            {% else %}
-                            {{article.title}}
-                            {% endif %}
-                        </td>
-                        <td><img src="{{article.thumbnail.url}}" width="120px"  alt=""></td>  
-                        <td>{{article.get_category}}</td>
-                        <td>{{article.author.get_full_name}}</td> 
-                        <td>{{article.publish}}</td>
-                        <td>
-                            {% if article.status == 'P' %}
-                                <span class="badge badge-success">Publish</span>
-                                <a target="_blank" class="badge badge-primary" href="{% url 'blog:detail' article.id %}">To Site</a>
-                            {% else %}
-                                <span class="badge badge-warning">Draft</span>
-                            {% endif %}
-                            {% if user.is_superuser %}
-                                <a class="badge badge-danger" href="{% url 'accounts:article-delete' article.pk %}">Delete</a>
-                            {% endif %}
-                        </td>
-                        <td>{{article.descriptions|striptags|truncatewords:"20"}}</td>
-
-                    </tr>
-                {% endfor %}
-      
-                </tbody>
-            </table>
-            </div>
-            <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
+                <!-- /.card -->
+            {% else %}
+                <h3>Here Is Empty</h3>
+                    {% if user.is_author or user.is_superuser %}
+                        <h6><a href="{% url 'accounts:article-create' %}">
+                                New Article
+                        </a></h6>
+                    {% endif %}    
+            {% endif %}    
+                
         </div>
     </div>
 

@@ -49,7 +49,13 @@
         <a href="{% url 'blog:home' %}" target="_blank"  class="nav-link">Website</a>
       </li>
     </ul>
-
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link"  data-controlsidebar-slide="true" href="{% url 'accounts:logout' %}" role="button">
+          <i class="fa fa-sign-out-alt"></i>
+        </a>
+      </li>
+    </ul>
     <!-- Right navbar links -->
     <!-- <ul class="navbar-nav ml-auto"> -->
       <!-- Navbar Search -->
