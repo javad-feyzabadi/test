@@ -74,9 +74,9 @@ Article List
                                     
                                     {% endif %}
 
-                                            {% if user.is_superuser %}
-                                                    <a class="badge badge-danger" href="{% url 'accounts:article-delete' article.pk %}">Delete</a>
-                                            {% endif %}
+                                    {% if user.is_superuser %}
+                                            <a class="badge badge-danger" href="{% url 'accounts:article-delete' article.pk %}">Delete</a>
+                                    {% endif %}
                                 </td>
                                 <td>{{article.descriptions|striptags|truncatewords:"20"}}</td>
 
