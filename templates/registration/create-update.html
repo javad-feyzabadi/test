@@ -41,6 +41,9 @@ Add Article
                     {% endif %}
                 </div>
                 <button type="submit" class="btn btn-success">Send</button>
+                {% if user.is_superuser and request.resolver_match.kwargs.pk %}
+                <a class="btn btn-danger" href="{% url 'accounts:article-delete' request.resolver_match.kwargs.pk %}">Delete</a>
+                {% endif%}
             </form>
         </div>
 </div>
