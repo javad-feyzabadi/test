@@ -45,13 +45,21 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{% url 'accounts:homee' %}" class="nav-link active">
+              <a href="{% url 'accounts:homee' %}" 
+              class="nav-link 
+              {% if request.resolver_match.url_name == 'homee' %}
+              active
+              {% endif%}">
                 <i class="fa fa-list nav-icon"></i>
                 <p>Article List</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{% url 'accounts:article-create' %}" class="nav-link">
+              <a href="{% url 'accounts:article-create' %}" 
+              class="nav-link 
+              {% if request.resolver_match.url_name == 'article-create' %}
+              active 
+              {% endif%}">
                 <i class="fa fa-edit nav-icon"></i>
                 <p>Add Article</p>
               </a>
