@@ -28,7 +28,14 @@
                     {% for post in object_list %}
                     <div class="post-preview">
                         <a href="{% url 'blog:detail' post.id %}">
-                            <h2 class="podfor st-title">{{post.title}}</h2>
+                            <h2 class="podfor st-title">
+                                {{post.title}}
+                                {% if post.is_special %}
+                                    <span class="badge badge-danger" style="color: red;
+                                    font-size: 14px;">Special</span>
+                                {% endif %}
+                            </h2>
+                      
                            <img src="{{post.thumbnail.url}}" alt="" width="250" height="auto">
                             <h3 class="post-subtitle">{{post.descriptions|striptags|truncatewords:30}}</h3>
                         </a>

@@ -9,7 +9,12 @@
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="post-heading">
-                    <h1>{{object.title}}</h1>
+                    <h1>{{object.title}}
+                        {% if object.is_special %}
+                        <span class="badge badge-danger" style="color: red;
+                        font-size: 14px;">Special</span>
+                    {% endif %}
+                    </h1>
                     <h2 class="subheading">Iranian singer</h2>
                     <span class="meta">
                         Posted by
@@ -37,7 +42,9 @@
                             {% if user.is_authenticated and user.is_special_user or user == object.author or user.is_superuser %}
                                 <p>{{object.descriptions|safe}}</p>
                             {% else %}
-                            <p> This Article Is Special Article <a href="#">Special User</a> Buy Article</p>
+                            {{object.descriptions|striptags|truncatewords:50}}
+                            <p class="alert alert-danger"> This Article Is Special Article <a class="alert-link" href="#">Special User</a> Buy Article</p>
+                           
                             {% endif %}
                         {% else %}
                             <p>{{object.descriptions|safe}}</p>
