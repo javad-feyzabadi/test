@@ -52,4 +52,4 @@ class AuthorsAccessMixin():
             else:
                 return redirect('accounts:profile')
         else:
-                return redirect('accounts:login')
+                return redirect('login')
