@@ -1,18 +1,21 @@
-from django.shortcuts import render
 # from django.contrib.auth.decorators import login_required
+
+from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
 						ListView,CreateView,
 						UpdateView,DeleteView
 )						
-from django.urls import reverse_lazy
 
 from . forms import ProfileForm
 from . models import User
-from blog.models import Article
 from . mixins import (FieldsMixin,FormValidMixin,
 					  AuthorAccessMixin,SuperUserMixin,
 )
+
+from blog.models import Article
 
 
 # @login_required
@@ -58,3 +61,12 @@ class Profile(LoginRequiredMixin,UpdateView):
 			'user':self.request.user
 		})
 		return kwargs
+
+class Login(LoginView):
+	def get_success_url(self):
+		user = self.request.user
+
+		if user.is_superuser or user.is_author:
+			return reverse_lazy('accounts:homee')
+		else:
+			return reverse_lazy('accounts:profile')
