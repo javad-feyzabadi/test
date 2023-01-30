@@ -7,9 +7,14 @@ from django.views.generic import (
 )						
 from django.urls import reverse_lazy
 
+from . forms import ProfileForm
 from . models import User
 from blog.models import Article
-from . mixins import FieldsMixin,FormValidMixin,AuthorAccessMixin,SuperUserMixin
+from . mixins import (FieldsMixin,FormValidMixin,
+					  AuthorAccessMixin,SuperUserMixin,
+)
+
+
 # @login_required
 # def home(request):
 #     return render(request,'registration/home.html')
@@ -41,10 +46,7 @@ class ArticleDelete(SuperUserMixin,DeleteView):
 class Profile(UpdateView):
 	model = User
 	template_name = "registration/profile.html"
-	fields = ["username","email","first_name","last_name",
-			  "special_user","is_author"
-	]
 	success_url = reverse_lazy('accounts:profile')
-
+	form_class = ProfileForm
 	def get_object(self):
 		return User.objects.get(pk=self.request.user.pk)
