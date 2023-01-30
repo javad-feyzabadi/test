@@ -13,6 +13,7 @@ from . forms import ProfileForm
 from . models import User
 from . mixins import (FieldsMixin,FormValidMixin,
 					  AuthorAccessMixin,SuperUserMixin,
+					  AuthorsAccessMixin,
 )
 
 from blog.models import Article
@@ -22,7 +23,7 @@ from blog.models import Article
 # def home(request):
 #     return render(request,'registration/home.html')
 
-class ArticleList(LoginRequiredMixin, ListView):
+class ArticleList(AuthorsAccessMixin, ListView):
 	template_name = "registration/home.html"
 	def get_queryset(self):
 		if self.request.user.is_superuser:
@@ -30,7 +31,7 @@ class ArticleList(LoginRequiredMixin, ListView):
 		else:
 			return Article.objects.filter(author=self.request.user)
 
-class ArticleCreate(LoginRequiredMixin,FormValidMixin,FieldsMixin,CreateView):
+class ArticleCreate(AuthorsAccessMixin,FormValidMixin,FieldsMixin,CreateView):
 	model = Article
 	template_name = "registration/create-update.html"
 
