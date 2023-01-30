@@ -139,7 +139,7 @@ LOGIN_REDIRECT_URL = 'accounts:homee'
 LOGIN_URL = 'login' 
 
 #logout
-LOGOUT_REDIRECT_URL = 'accounts:login'
+LOGOUT_REDIRECT_URL = 'login'
 
 #CRISPY
 
@@ -148,3 +148,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 #AUTH_USER
 
 AUTH_USER_MODEL = 'accounts.User'
+
+#EMAIL_BACKEND
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
