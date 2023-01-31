@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load comment_tags %}  
 {% block title %}Post{% endblock %}
 
 
@@ -49,6 +50,9 @@
                         {% else %}
                             <p>{{object.descriptions|safe}}</p>
                         {% endif %}
+
+                        {% render_comments object request %}
+                        {% include_bootstrap %}
                         <blockquote class="blockquote">{{object.publish}}</blockquote>
                         <h2 class="section-heading">Picture</h2>
                         <a href="{{object.thumbnail.url}}"><img class="img-fluid" src="{{object.thumbnail.url}}" alt="..." /></a>
