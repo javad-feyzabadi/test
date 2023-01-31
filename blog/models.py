@@ -3,6 +3,12 @@ from django.utils import timezone
 from accounts.models import User
 from django.utils.html import format_html
 from django.urls import reverse
+from django.contrib.contenttypes.fields import GenericRelation
+
+from accounts.models import User
+
+from comment.models import Comment
+
 
 #My Manager
 class ArticleManager(models.Manager):
@@ -49,6 +55,8 @@ class Article (models.Model):
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=1,choices=STATUS_CHOICES)
     is_special = models.BooleanField(default=False)
+    comments = GenericRelation(Comment)
+
 
     class Meta:
         ordering = ['-publish']
@@ -67,3 +75,5 @@ class Article (models.Model):
         return reverse('accounts:homee')
 
     objects = ArticleManager()
+
+
