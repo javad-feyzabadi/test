@@ -1,15 +1,20 @@
 # from django.contrib.auth.decorators import login_required
-
-from django.shortcuts import render
+from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.template.loader import render_to_string
+from django.core.mail import EmailMessage
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
 						ListView,CreateView,
 						UpdateView,DeleteView
 )						
 
-from . forms import ProfileForm
+from .tokens import account_activation_token
+from . forms import ProfileForm,SignupForm
 from . models import User
 from . mixins import (FieldsMixin,FormValidMixin,
 					  AuthorAccessMixin,SuperUserMixin,
@@ -17,6 +22,14 @@ from . mixins import (FieldsMixin,FormValidMixin,
 )
 
 from blog.models import Article
+
+
+
+
+
+
+
+
 
 
 # @login_required
@@ -72,3 +85,49 @@ class Login(LoginView):
 		else:
 			return reverse_lazy('accounts:profile')
 
+
+class Register(CreateView):
+	form_class = SignupForm
+	template_name = 'registration/register.html'
+
+	def form_valid(self,form):
+			user = form.save(commit=False)
+			user.is_active = False
+			user.save()
+			current_site = get_current_site(self.request)
+			mail_subject = 'Activate your blog account.'
+			message = render_to_string('registration/activate_account.html', {
+				'user': user,
+				'domain': current_site.domain,
+				'uid':urlsafe_base64_encode(force_bytes(user.pk)),
+				'token':account_activation_token.make_token(user),
+			})
+			to_email = form.cleaned_data.get('email')
+			email = EmailMessage(
+						mail_subject, message, to=[to_email]
+			)
+			email.send()
+			return HttpResponse('Please confirm your email address to complete the registration. <a href="/login">Login</a>')
+
+
+def activate(request, uidb64, token):
+	try:
+		uid = force_text(urlsafe_base64_decode(uidb64))
+		user = User.objects.get(pk=uid)
+	except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+		user = None
+	if user is not None and account_activation_token.check_token(user, token):
+		user.is_active = True
+		user.save()
+		return HttpResponse('Thank you for your email confirmation. Now you can login your account.<a href="/login">Login</a>')
+	else:
+		return HttpResponse('Activation link is invalid! <a href="/register">Register</a>')
+
+
+
+
+
+
+
+
+   
