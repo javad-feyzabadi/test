@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load comment_tags %}  
+{% load comment_tags %} 
+{% load ratings %}
+
 {% block title %}Post{% endblock %}
 
 
@@ -22,6 +24,9 @@
                         <a href="#!">Start Bootstrap</a>
                         on August 24, 2022
                     </span>
+                    <div>
+                        {% ratings object %} 
+                    </div>
                 </div>
             </div>
         </div>
