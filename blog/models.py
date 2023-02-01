@@ -61,7 +61,7 @@ class Article (models.Model):
     status = models.CharField(max_length=1,choices=STATUS_CHOICES)
     is_special = models.BooleanField(default=False)
     comments = GenericRelation(Comment)
-    hits = models.ManyToManyField(IPAddress,blank=True,related_name="hits")
+    hits = models.ManyToManyField(IPAddress,through='ArticleHit' ,blank=True,related_name="hits")
 
     class Meta:
         ordering = ['-publish']
@@ -82,3 +82,7 @@ class Article (models.Model):
     objects = ArticleManager()
 
 
+class ArticleHit(models.Model):
+    article = models.ForeignKey(Article,on_delete=models.CASCADE)
+    ip_address = models.ForeignKey(IPAddress,on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
