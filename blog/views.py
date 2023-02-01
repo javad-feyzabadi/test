@@ -1,7 +1,7 @@
 from django.views.generic import ListView,DetailView
 from django.shortcuts import render,get_object_or_404
 from django.core.paginator import Paginator
-from django.db.models import Count,Q
+
 
 
 from . models import Article,Category
@@ -9,14 +9,11 @@ from . models import Article,Category
 from accounts.models import User
 from accounts.mixins import AuthorAccessMixin
 
-from datetime import datetime, timedelta
+
 
 
 class ArticleListView(ListView):
-    last_month = datetime.today() - timedelta(days=30)
-    queryset = Article.objects.filter(status="P").annotate(
-            count=Count('hits',filter=Q(articlehit__created__gt = last_month))
-        ).order_by('-count','-publish')[:5]
+    queryset = Article.objects.filter(status="P")
     paginate_by = 4
 
 
