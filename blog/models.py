@@ -10,6 +10,11 @@ from accounts.models import User
 from comment.models import Comment
 
 
+
+class IPAddress(models.Model):
+    ip_address = models.GenericIPAddressField()
+
+
 #My Manager
 class ArticleManager(models.Manager):
     def published(self):
@@ -56,7 +61,7 @@ class Article (models.Model):
     status = models.CharField(max_length=1,choices=STATUS_CHOICES)
     is_special = models.BooleanField(default=False)
     comments = GenericRelation(Comment)
-
+    hits = models.ManyToManyField(IPAddress,blank=True,related_name="hits")
 
     class Meta:
         ordering = ['-publish']

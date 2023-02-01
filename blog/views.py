@@ -20,7 +20,13 @@ class ArticleListView(ListView):
 class ArticleDetailView(DetailView):
     def get_object(self):
         blog_id = self.kwargs.get('blog_id')
-        return get_object_or_404(Article,id=blog_id,status="P")
+        article =  get_object_or_404(Article,id=blog_id,status="P")
+
+        ip_address = self.request.user.ip_address
+        if ip_address not in article.hits.all():
+            article.hits.add(ip_address)
+        
+        return article
 
 
 class ArticleCategoryList(ListView):

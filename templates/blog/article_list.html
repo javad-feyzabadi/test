@@ -36,6 +36,9 @@
                                 <div>
                                     {% ratings post %} 
                                 </div>
+                                <div>
+                                    Views: {{post.hits.count}}
+                                </div>
                                 {% if post.is_special %}
                                     <span class="badge badge-danger" style="color: red;
                                     font-size: 14px;">Special</span>
