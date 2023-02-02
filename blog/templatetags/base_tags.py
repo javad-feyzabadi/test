@@ -19,13 +19,24 @@ def category_navbar():
     }
 
 
-@register.inclusion_tag('blog/partials/popular_articles.html')
+@register.inclusion_tag('blog/partials/sidebar.html')
 def popular_articles():
     last_month = datetime.today() - timedelta(days=30)
     return {
-        'popular_articles' : Article.objects.filter(status="P").annotate(
+        'articles' : Article.objects.filter(status="P").annotate(
             count=Count('hits',filter=Q(articlehit__created__gt = last_month))
-        ).order_by('-count','-publish')[:5]
+        ).order_by('-count','-publish')[:5],
+        'title':'Article Most Viewer'
     }
 
+
+@register.inclusion_tag('blog/partials/sidebar.html')
+def hot_articles():
+    last_month = datetime.today() - timedelta(days=30)
+    return {
+        'articles' : Article.objects.filter(status="P").annotate(
+            count=Count('comments',filter=Q(comments__posted__gt = last_month) and Q(comments__content_type_id = 6))
+        ).order_by('-count','-publish')[:5],
+        'title':'Article Hot Month'
+    }
 

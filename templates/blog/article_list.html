@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load ratings %}
+{% load base_tags %}
 
 
 
@@ -16,14 +17,12 @@
                 <div class="site-heading">
                     <h1>Music of Iran</h1>
                     <span class="subheading">Persian music</span>
-                </div>
+                </div>  
             </div>
         </div>
     </div>
 </header>
-
 {% endblock %}
-
 
 {% block content %}
         <!-- Main Content-->
@@ -63,7 +62,7 @@
                     <hr class="my-4" />
                    {% endfor %}
 
-                    <!-- Pager-->
+           <!-- Pager-->
 
                     {% if is_paginated %}
 
