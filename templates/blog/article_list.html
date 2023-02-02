@@ -2,7 +2,7 @@
 {% load static %}
 {% load ratings %}
 {% load base_tags %}
-
+{% load humanize %}
 
 
 
@@ -54,6 +54,7 @@
                             <a href="#">post created :
                                 {{post.author.get_full_name}}</a>
                         </p>
+                        <time>{{post.publish | naturaltime}}</time>
                         {% for cat in post.category.active %}
                         <a href="{% url 'blog:category' cat.id %}">#{{cat.title}}</a>
                     {% endfor %}
