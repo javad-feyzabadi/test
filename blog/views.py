@@ -1,7 +1,7 @@
 from django.views.generic import ListView,DetailView
 from django.shortcuts import render,get_object_or_404
 from django.core.paginator import Paginator
-
+from django.db.models import Q
 
 
 from . models import Article,Category
@@ -70,6 +70,18 @@ class ArticlePreView(AuthorAccessMixin,DetailView):
 
 
 
+class SearchList(ListView):
+    paginate_by = 4
+    template_name = 'blog/search_list.html'
+    
+    def get_queryset(self):
+        search = self.request.GET.get('q')
+        return Article.objects.filter(Q(descriptions__icontains = search) | Q(title__icontains = search))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['search'] = self.request.GET.get('q')
+        return context
 
 
 

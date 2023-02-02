@@ -14,4 +14,17 @@
             {% endif %}
         {% endfor %}
     </ul>
+    <form class="form-inline mt-3" action="{% url 'blog:search' %}">
+    <div class="wrap">
+        <div class="search">
+           <input type="text" class="searchTerm" placeholder="What are you looking for?">
+           <button type="submit" class="searchButton">
+             <i class="fa fa-search"></i>
+          </button>
+        </div>
+    </div>
+    </form>
+
+    <!-- <input type="text" name="q" class="form-control" placeholder="Search">
+        <button class="btn btn-success" style="padding: 8px; border-radius: 5px; margin-right: 5px;">Search</button> -->
 </div>
