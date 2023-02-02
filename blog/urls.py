@@ -15,6 +15,8 @@ urlpatterns=[
     path('category/<int:blog_id>/',ArticleCategoryList.as_view(),name='category'),
     path('preview/<int:pk>/',ArticlePreView.as_view(),name='preview'),
     path('search/',SearchList.as_view(),name='search'),
+    path('search/page/<int:page>',SearchList.as_view(),name='search'),
+
 
 
 ]
