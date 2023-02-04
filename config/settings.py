@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'blog.apps.BlogConfig',
     'accounts.apps.AccountsConfig',
+    'about.apps.AboutConfig',
     'widget_tweaks',
     'crispy_forms',
     'django_gravatar',
