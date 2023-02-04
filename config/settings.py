@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'accounts.apps.AccountsConfig',
     'about.apps.AboutConfig',
+    'posts.apps.PostsConfig',
     'widget_tweaks',
     'crispy_forms',
     'django_gravatar',

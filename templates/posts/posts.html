@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+    <body>
+
+        <!-- Page Header-->
+        {% block header%}
+        <header class="masthead" style="background-image: url('/static/blog/assets/img/post.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1>List Of Posts</h1>
+                            <h2 class="subheading">لیست تمام پست های وب سایت</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        {% endblock%}
+        <!-- Post Content-->
+        {% block content%}
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                    {% for post in posts %}
+                   <ul>
+                        <a href="{% url 'blog:detail' post.id %}"><b>Title :{{post.title}}.
+                            <small>
+                            Created: {{post.publish}}
+                            </small>
+                            <small>
+                            Author: {{post.author}}
+                            </small>
+                        </b>
+                    </a> 
+                   </ul>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </article>
+
+           <!-- Pager-->
+
+           {% if is_paginated %}
+
+           <nav aria-label="Page navigation example text-aline-center" style="padding-left: 45%;">
+               <ul class="pagination">
+
+                 {% if page_obj.has_previous %}
+                   <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a></li>
+                 {% endif%}
+
+                 {% for post in page_obj.paginator.page_range %}
+
+                   {% if post.number == page %}
+                       <li class="page-item "><a class="page-link" href="?page={{post}}">{{post}}</a></li>
+                   {% endif %}
+
+                 {% endfor%}
+
+                 {% if page_obj.has_next %}
+                   <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a></li>
+                 {% endif%}
+
+               </ul>
+           </nav>
+
+           {% endif %}
+           
+           <!-- <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div> -->
+           
+           <!-- End Pager-->
+    </body>
+    {% endblock%}
