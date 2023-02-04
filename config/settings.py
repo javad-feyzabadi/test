@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'about.apps.AboutConfig',
     'posts.apps.PostsConfig',
+    'contact.apps.ContactConfig',
     'widget_tweaks',
     'crispy_forms',
     'django_gravatar',

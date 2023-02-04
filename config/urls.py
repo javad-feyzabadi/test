@@ -25,6 +25,7 @@ urlpatterns = [
     path('',include('blog.urls')),
     path('about/',include('about.urls')),
     path('posts/',include('posts.urls')),
+    path('contact/',include('contact.urls')),
     path('',include('django.contrib.auth.urls')),
     path('accounts/',include('accounts.urls')),
     path("login/",Login.as_view(), name="login"),
