@@ -27,7 +27,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" target="_blank" href="https://telegram.me/javad_feyzabadi">Me</a>
+            <!-- <a class="navbar-brand" target="_blank" href="https://telegram.me/javad_feyzabadi">Me</a>
             {% if user.is_authenticated%}
                 <small style="color: rgb(255, 255, 255);" class="font-weight-bold">Hi {{user.username}}</small>|
                 <a href="{% url 'accounts:homee' %}"><small style="color: rgb(255, 255, 255);" class="font-weight-bold">MY Account</small></a> |
@@ -35,13 +35,37 @@
             {% else %}
                 <a href="{% url 'login' %}"><small style="color: rgb(255, 255, 255);" class="font-weight-bold">Login</small></a> |
                 <a href="{% url 'register' %}"><small style="color: rgb(255, 255, 255);" class="font-weight-bold">Register</small></a>
-            {% endif %}
+            {% endif %} -->
+
+            <!-- <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                    <li class="nav-item"><a target="_blank" class="nav-link px-lg-3 py-3 py-lg-4" href="https://telegram.me/javad_feyzabadi">Me</a></li>
+                    {% if user.is_authenticated%}
+                    <li class="nav-item"><a target="_blank" class="nav-link px-lg-3 py-3 py-lg-4" >Hi {{user.username}}</a></li>
+                    <li class="nav-item"><a target="_blank" class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'accounts:homee' %}">MY Account</a></li>
+                    <li class="nav-item"><a target="_blank" class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                    <li class="nav-item"><a target="_blank" class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'login' %}"> Login</a></li>
+                    <li class="nav-item"><a target="_blank" class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'register' %}">Register</a></li>
+                    {% endif %}
+                </ul>
+            </div> -->
+
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                    {% if user.is_authenticated%}
+                    <li class="nav-item"><a target="_blank" class="nav-link px-lg-3 py-3 py-lg-4" >Hi {{user.username}}</a></li>
+                    <li class="nav-item"><a target="_blank" class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'logout' %}">Logout</a></li>
+                    <li class="nav-item"><a target="_blank" class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'accounts:homee' %}">MY Account</a></li>
+                    {% else %}
+                    <li class="nav-item"><a target="_blank" class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'login' %}"> Login</a></li>
+                    <li class="nav-item"><a target="_blank" class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'register' %}">Register</a></li>
+                    {% endif %}
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'blog:home' %}">Home</a></li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'about:about' %}">About</a></li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'posts:posts' %}"> Post</a></li>

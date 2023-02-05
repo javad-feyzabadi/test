@@ -5,13 +5,13 @@
 {% block title %}Home{% endblock %}
 
 {% block header%}
-<header class="masthead" style="background-image: url('/static/blog/assets/img/post-bg.jpg')">
+<header class="masthead" style="background-image: url('/static/blog/assets/img/cat.jpg')">
     <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="site-heading">
                     <h1>category</h1>
-                    <span class="subheading">A Blog </span>
+                    <span class="subheading">{{category.title}}</span>
                 </div>
             </div>
         </div>
@@ -24,7 +24,6 @@
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
-                    <h3 class="alert alert-primary text-center">Category {{category.title}}</h3>
                     <!-- Post preview-->
                     {% for post in object_list %}
                         <div class="post-preview">
