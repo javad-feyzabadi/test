@@ -67,9 +67,6 @@ class ArticlePreView(AuthorAccessMixin,DetailView):
         return get_object_or_404(Article,pk=pk)
 
 
-
-
-
 class SearchList(ListView):
     paginate_by = 4
     template_name = 'blog/search_list.html'

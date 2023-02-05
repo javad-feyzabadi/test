@@ -53,15 +53,25 @@
     </nav>
 <!-- Page Header-->
 {% block header%}
-
 {% endblock %}
+<div style="padding-right: 25px;">
+<form class="form-inline mt-3" style="float: right;" action="{% url 'blog:search' %}">
+    <div class="wrap">
+        <div class="search">
+            <button type="submit" class="searchButton">
+                <i class="fa fa-search"></i>
+             </button>
+           <input name="q" type="text" class="searchTerm" placeholder="What are you looking for?">
 
+        </div>
+    </div>
+</form>
+</div>
 {% block content %}
-
 {% endblock %}
 
-  <!-- Footer-->
-  <footer class="border-top">
+<!-- Footer-->
+<footer class="border-top">
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
