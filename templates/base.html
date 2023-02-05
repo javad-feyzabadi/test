@@ -29,7 +29,8 @@
         <div class="container px-4 px-lg-5">
             <a class="navbar-brand" target="_blank" href="https://telegram.me/javad_feyzabadi">Me</a>
             {% if user.is_authenticated%}
-                <small style="color: rgb(255, 255, 255);" class="font-weight-bold">Hi {{user.username}}</small> |
+                <small style="color: rgb(255, 255, 255);" class="font-weight-bold">Hi {{user.username}}</small>|
+                <a href="{% url 'accounts:homee' %}"><small style="color: rgb(255, 255, 255);" class="font-weight-bold">MY Account</small></a> |
                 <a href="{% url 'logout' %}"><small style="color: rgb(255, 255, 255);" class="font-weight-bold">Logout</small></a>
             {% else %}
                 <a href="{% url 'login' %}"><small style="color: rgb(255, 255, 255);" class="font-weight-bold">Login</small></a> |
