@@ -9,7 +9,9 @@
 {% block title %}Home{% endblock %}
 
 
+
 {% block header%}
+
 <header class="masthead" style="background-image: url('static/blog/assets/img/home.jpg')">
     <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -22,9 +24,17 @@
         </div>
     </div>
 </header>
+{% if messages %}
+<p class="alert alert-success">
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+</p>
+{% endif %}
 {% endblock %}
 
 {% block content %}
+
         <!-- Main Content-->
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
