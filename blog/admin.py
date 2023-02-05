@@ -34,7 +34,7 @@ class CategoryAdmin(admin.ModelAdmin):
 class ArticleAdmin(admin.ModelAdmin):
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == "author":
-            kwargs["queryset"] = User.objects.filter(is_staff=True)
+            kwargs["queryset"] = User.objects.filter(is_author=True)
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
     list_display=("title","author",'thumbnail_tag',"slug","publish","is_special","status","get_category")
