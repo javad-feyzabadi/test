@@ -4,7 +4,7 @@
 
 
 {% block header%}
-<header class="masthead" style="background-image: url('static/blog/assets/img/post.jpg')">
+<header class="masthead" style="background-image: url('/static/blog/assets/img/se.jpg')">
     <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
@@ -31,11 +31,11 @@
                             <a href="{% url 'blog:detail' post.id %}">
                                 <h2 class="podfor st-title">{{post.title}}</h2>
                             <img src="{{post.thumbnail.url}}" alt="">
-                                <h3 class="post-subtitle">{{post.descriptions|truncatewords:30}}</h3>
+                                <h3 class="post-subtitle">{{post.descriptions |striptags |truncatewords:30}}</h3>
                             </a>
                             <p class="post-meta">
                                 Posted by
-                                <a href="#!">{{post.status}}</a>
+                                <a href="#!">{{post.author}}</a>
                                 {{post.created}}
                             </p>
                             {% for cat in post.category.active %}
