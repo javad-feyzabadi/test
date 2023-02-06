@@ -17,6 +17,7 @@ class ArticleListView(ListView):
     paginate_by = 4
 
 
+
 class ArticleDetailView(DetailView):
     def get_object(self):
         blog_id = self.kwargs.get('blog_id')
