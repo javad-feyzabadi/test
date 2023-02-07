@@ -26,7 +26,6 @@ class ArticleDetailView(DetailView):
         ip_address = self.request.user.ip_address
         if ip_address not in article.hits.all():
             article.hits.add(ip_address)
-        
         return article
 
 
