@@ -25,6 +25,7 @@ class CategoryManager(models.Manager):
         return self.filter(status=True)
 
 
+
 class Category(models.Model):
     parent = models.ForeignKey("self",related_name='childern',blank=True,null=True,on_delete=models.SET_NULL)
     title = models.CharField(max_length=200)
